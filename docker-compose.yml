@@ -1,0 +1,50 @@
+version: '3.7'
+services:
+
+  oceania_mysql:
+    image: mariadb
+    container_name: "oceania-mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./.docker/mysql:/application
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=penacova
+      - MYSQL_USER=penacova
+      - MYSQL_PASSWORD=p3n4c0v4
+    ports:
+      - "3306:3306"
+
+  oceania_php:
+    hostname: oceania-api.localhost.com
+    container_name: "oceania-php"
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    volumes: 
+      - ./configs:/var/www/configs
+      - ./api:/var/www/api
+#      - ./_magrathea:/var/www/magrathea
+      - /home/paulo/Rincewind/MagratheaPHP/Magrathea:/var/www/magrathea
+      - ./database:/var/www/database
+      - ./logs:/var/www/logs
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    environment:
+      LETS_ENCRYPT_EMAIL: "oceania@platypusweb.com.br"
+      LETS_ENCRYPT_DOMAINS: "oceania-api.localhost.com,www.oceania-api.localhost.com"
+
+  oceania_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: oceania-dev_pma
+    environment:
+      PMA_HOST: oceania_mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    depends_on:
+      - oceania_mysql
+    ports:
+      - 8183:80
