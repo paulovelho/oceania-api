@@ -1,5 +1,6 @@
 configs/magrathea.conf
 app/plugins/*
+vendor/*
 
 _cache/
 _compiled/

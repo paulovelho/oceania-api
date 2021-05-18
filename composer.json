@@ -1,0 +1,13 @@
+{
+    "name": "platypus/malte",
+    "authors": [
+        {
+            "name": "Paulo Martins",
+            "email": "paulo.martins@botecaria.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "firebase/php-jwt": "@dev"
+    }
+}

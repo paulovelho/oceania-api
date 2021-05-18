@@ -30,6 +30,7 @@ services:
       - /home/paulo/Rincewind/MagratheaPHP/Magrathea:/var/www/magrathea
       - ./database:/var/www/database
       - ./logs:/var/www/logs
+      - ./vendor:/var/www/vendor
     ports:
       - "80:80"
       - "443:443"
