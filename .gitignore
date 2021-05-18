@@ -1,9 +1,5 @@
-onfigs/magrathea.conf
-api/inc/global.php
-api/inc/config.php
-api/Models/Base/*
-api/plugins/*
-
+configs/magrathea.conf
+app/plugins/*
 
 _cache/
 _compiled/

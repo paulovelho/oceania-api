@@ -25,6 +25,7 @@ services:
     volumes: 
       - ./configs:/var/www/configs
       - ./api:/var/www/api
+      - ./app:/var/www/app
 #      - ./_magrathea:/var/www/magrathea
       - /home/paulo/Rincewind/MagratheaPHP/Magrathea:/var/www/magrathea
       - ./database:/var/www/database
