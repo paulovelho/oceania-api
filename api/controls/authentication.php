@@ -80,7 +80,7 @@ class AuthenticationApi extends MagratheaApiControl {
 		$payload = [
 			"id" => $user->id,
 			"email" => $user->email,
-			"role" => $user->role
+			"name" => $user->name
 		];
 		$jwtRefresh = $this->jwtEncode($payload);
 		$payload["refresh"] = $jwtRefresh;
@@ -112,7 +112,7 @@ class AuthenticationApi extends MagratheaApiControl {
 
 	public function Login() {
 		$post = $this->GetPost();
-		$user = $this->service->Login($post["user"], $post["password"]);
+		$user = $this->service->Login($post["email"], $post["password"]);
 //		p_r($user);
 		try {
 			return $this->ResponseLogin($user);
@@ -146,10 +146,7 @@ class AuthenticationApi extends MagratheaApiControl {
 
 	public function IsAdmin() {
 		try {
-			if($this->GetTokenInfo() && $this->CheckExpire()) {
-				return ($this->userInfo->role == UserRoles::ADMIN);
-			}
-			return false;
+			return $this->IsLogged();
 		} catch(Exception $ex) {
 			throw $ex;
 		}

@@ -3,6 +3,7 @@
 	include($magrathea_path."/MagratheaApi.php");
 
 	include("controls/users.php");
+	include("controls/status.php");
 	include("controls/authentication.php");
 
 	class OceaniaAPI {
@@ -13,18 +14,26 @@
 
 		public static function Start() {
 
-			$authControl = AuthenticationApi::Instance();
-			$usersControl = new UserControl();
+			$authApi = AuthenticationApi::Instance();
+			$usersApi = new UsersApi();
+			$statusApi = new StatusApi();
 
 			$api = MagratheaApi::Instance()
-				->BaseAuthorization($authControl, self::LOGGED)     
+				->BaseAuthorization($authApi, self::LOGGED)     
 
+				// auth
+				->Add("POST", "login", $authApi, "Login", self::OPEN)
+				->Add("GET", "token", $authApi, "GetTokenInfo", self::OPEN)
 
 				// users
-				->Crud("user", $usersControl, self::ADMIN)
-				->Add("PUT", "update-password", $usersControl, "UpdatePassword", self::LOGGED)
-				->Add("PUT", "user/:id/toggle", $usersControl, "ToggleActive", self::ADMIN);
+				->Crud("user", $usersApi, self::ADMIN)
+				->Add("PUT", "update-password", $usersApi, "UpdatePassword", self::LOGGED)
+				->Add("PUT", "user/:id/toggle", $usersApi, "ToggleActive", self::ADMIN)
 
+				// status
+				->Crud(["status", "statuses"], $statusApi)
+
+				;
 
       return $api;
 		}

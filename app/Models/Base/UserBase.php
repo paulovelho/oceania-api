@@ -5,7 +5,7 @@
 
 class UserBase extends MagratheaModel implements iMagratheaModel {
 
-	public $id, $email, $name, $active;
+	public $id, $email, $name, $password, $active;
 	public $created_at, $updated_at;
 	protected $autoload = null;
 
@@ -23,6 +23,7 @@ class UserBase extends MagratheaModel implements iMagratheaModel {
 		$this->dbValues["id"] = "int";
 		$this->dbValues["email"] = "string";
 		$this->dbValues["name"] = "string";
+		$this->dbValues["password"] = "string";
 		$this->dbValues["active"] = "int";
 
 		$this->dbValues["created_at"] =  "datetime";
