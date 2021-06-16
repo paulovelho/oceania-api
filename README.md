@@ -44,4 +44,8 @@ Make a post to
 for some of them you might comment the blocker on the API return for it to initialize
 
 
+## endpoints
+API endpoints available at  
+http://oceania-api.localhost.com/debug
+
 
