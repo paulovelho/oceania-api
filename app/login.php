@@ -4,7 +4,7 @@
 	$email = @$_POST["email"];
 	$pass = @$_POST["password"];
 
-	if($email == "paulovelho@paulovelho.com" && $pass = "p4ul01") {
+	if($email == "paulovelho" && $pass = "123") {
 		$_SESSION["magrathea_user"] = $email;
 	}
 

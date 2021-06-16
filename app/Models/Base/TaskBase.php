@@ -7,7 +7,7 @@ class TaskBase extends MagratheaModel implements iMagratheaModel {
 
 	public $id, $project_id, $epic, $task, $activity_id, $status_id, $priority, $urgency, $hours_estimation, $hours_spent, $hours_total, $value_expected, $value_final, $depends_on, $deadline, $notes, $added_on;
 	public $created_at, $updated_at;
-	protected $autoload = array("Statuss" => "status_id");
+	protected $autoload = array("Status" => "status_id");
 
 	public function __construct(  $id=0  ){ 
 		$this->MagratheaStart();
@@ -44,9 +44,9 @@ class TaskBase extends MagratheaModel implements iMagratheaModel {
 		$this->relations["properties"]["Projects"] = null;
 		$this->relations["methods"]["Projects"] = "GetProjects";
 		$this->relations["lazyload"]["Projects"] = "false";
-		$this->relations["properties"]["Statuss"] = null;
-		$this->relations["methods"]["Statuss"] = "GetStatuss";
-		$this->relations["lazyload"]["Statuss"] = "false";
+		$this->relations["properties"]["Status"] = null;
+		$this->relations["methods"]["Status"] = "GetStatus";
+		$this->relations["lazyload"]["Status"] = "false";
 		$this->dbValues["created_at"] =  "datetime";
 		$this->dbValues["updated_at"] =  "datetime";
 
@@ -73,14 +73,14 @@ class TaskBase extends MagratheaModel implements iMagratheaModel {
 		$this->project_id = $projects->GetID();
 		return $this;
 	}
-	public function GetStatuss(){
-		if($this->relations["properties"]["Statuss"] != null) return $this->relations["properties"]["Statuss"];
-		$this->relations["properties"]["Statuss"] = new Status($this->status_id);
-		return $this->relations["properties"]["Statuss"];
+	public function GetStatus(){
+		if($this->relations["properties"]["Status"] != null) return $this->relations["properties"]["Status"];
+		$this->relations["properties"]["Status"] = new Status($this->status_id);
+		return $this->relations["properties"]["Status"];
 	}
-	public function SetStatuss($statuss){
-		$this->relations["properties"]["Statuss"] = $statuss;
-		$this->status_id = $statuss->GetID();
+	public function SetStatus($status){
+		$this->relations["properties"]["Status"] = $status;
+		$this->status_id = $status->GetID();
 		return $this;
 	}
 

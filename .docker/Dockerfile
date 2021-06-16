@@ -31,6 +31,13 @@ RUN service apache2 restart
 
 RUN chown -R www-data:www-data /var/www
 
+RUN mkdir /var/www/app
+RUN mkdir /var/www/app/plugins
+RUN mkdir /var/www/app/Controls
+RUN mkdir /var/www/app/Views
+RUN mkdir /var/www/app/Views/_compiled
+RUN mkdir /var/www/app/Views/_configs
+RUN mkdir /var/www/app/Views/_cache
 
 EXPOSE 80
 EXPOSE 443

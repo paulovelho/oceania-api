@@ -36,6 +36,14 @@ class UserControl extends UserControlBase {
 		}
 	}
 
+	public function GetByEmail($email) {
+		$query = MagratheaQuery::Select()
+			->Obj(new User())
+			->Where(array("email" => $email));
+		$user = $this->Run($query)[0];
+		return $user;
+	}
+
 }
 
 ?>
