@@ -5,8 +5,8 @@ echo "----------------------------------------------------------------"
 
 phpUser="www-data"
 
-mkdir -p app/database
-chown $phpUser:$phpUser app/database
+# mkdir -p app/database
+# chown $phpUser:$phpUser app/database
 
 mkdir -p app/plugins
 chown $phpUser:$phpUser app/plugins

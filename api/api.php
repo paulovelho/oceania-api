@@ -51,6 +51,7 @@
 				
 				// tasks
 				->Crud("task", $tasksApi, self::LOGGED)
+				->Add("POST", "task/:id/move-to/:status", $tasksApi, "ChangeStatus", self::ADMIN)
 
 				;
 
