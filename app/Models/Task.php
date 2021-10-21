@@ -7,7 +7,16 @@ class Task extends TaskBase {
 }
 
 class TaskControl extends TaskControlBase {
-	// and here!
+	
+	public function ChangeStatus($task_id, $status_id) {
+		$query = MagratheaQuery::Update()
+			->Obj(new Task())
+			->Where(array("id" => $task_id))
+			->Set("status_id", $status_id);
+		$rs = $this->Run($query);
+		return $rs;
+	}
+
 }
 
 ?>
