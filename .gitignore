@@ -20,3 +20,4 @@ database/*
 _magrathea/*
 
 .docker/mysql/*.nokeep
+
