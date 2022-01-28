@@ -17,7 +17,7 @@ class ActivityApi extends MagratheaApiControl {
 	}
 
 	public function Initialize() {
-//		return "Activities already initialized!";
+		return "Activities already initialized!";
 		$actArr = [];
 		array_push($actArr, $this->insertBasic("admin", 5, 1));
 		array_push($actArr, $this->insertBasic("bonus", 1, 0));

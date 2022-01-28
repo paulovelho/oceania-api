@@ -51,7 +51,10 @@
 				
 				// tasks
 				->Crud("task", $tasksApi, self::LOGGED)
-				->Add("POST", "task/:id/move-to/:status", $tasksApi, "ChangeStatus", self::ADMIN)
+				->Add("POST", "task/:id/move-to/:status", $tasksApi, "ChangeStatus", self::LOGGED)
+				->Add("POST", "tasks/:project_id/bulk-add", $tasksApi, "BulkAdd", self::LOGGED)
+				->Add("POST", "task/:id/add-hour", $tasksApi, "AddHour", self::LOGGED)
+				->Add("POST", "task/:id/remove-hour", $tasksApi, "RemoveHour", self::LOGGED)
 
 				;
 
