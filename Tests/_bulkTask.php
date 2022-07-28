@@ -118,6 +118,17 @@
 			$this->assertEqual($t3->depends_on, [12, 13]);
 		}
 
+		function testShouldAddTaskWithActivity() {
+			$this->mockDb->setReturns([ 2 ]);
+
+			$rs = $this->api->manageBulk(7, "some activity", 5); // 5 = development
+			$this->assertEqual(count($rs), 1);
+			$t1 = $rs[0];
+			$this->assertEqual($t1->id, 2);
+			$this->assertEqual($t1->task, "some activity");
+			$this->assertEqual($t1->activity_id, 5);
+		}
+
 	}
 
 ?>

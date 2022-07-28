@@ -56,11 +56,14 @@ class TasksApi extends MagratheaApiControl {
 
 
 	/* bulk add task */
-	private function CreateFromBase($name, $project_id, $hours=8, $depends_on=false) {
+	private function CreateFromBase($name, $project_id, $hours=8, $activity=null, $depends_on=false) {
 		$t = new Task();
 		$t->task = $name;
 		$t->project_id = $project_id;
 		$t->hours_estimation = $hours;
+		if($activity) {
+			$t->activity_id = $activity;
+		}
 		if($depends_on) {
 			$t->depends_on = $depends_on;
 		}
@@ -87,7 +90,7 @@ class TasksApi extends MagratheaApiControl {
 		$name = trim(implode('-', $taskParts));
 		return array('name' => $name, 'hours' => $hours, 'depth' => $depth);
 	}
-	public function manageBulk($project_id, $text) {
+	public function manageBulk($project_id, $text, $activity_id = null) {
 		$strings = array_reverse(explode("\n", $text));
 		$data = array_map(array($this, "lineToTask"), $strings);
 
@@ -96,7 +99,7 @@ class TasksApi extends MagratheaApiControl {
 		$sumHours = 0;
 		foreach ($data as $task) {
 			if ($task['depth'] > 0) {
-				$t = $this->CreateFromBase($task['name'], $project_id, $task['hours']);
+				$t = $this->CreateFromBase($task['name'], $project_id, $task['hours'], $activity_id);
 				if(!$depends) $depends = [];
 				$sumHours += $t->hours_estimation;
 				array_push($depends, $t->id);
@@ -107,7 +110,7 @@ class TasksApi extends MagratheaApiControl {
 					$hours = $sumHours;
 					$sumHours = 0;
 				}
-				$t = $this->CreateFromBase($task['name'], $project_id, $hours, $depends);
+				$t = $this->CreateFromBase($task['name'], $project_id, $hours, $activity_id, $depends);
 				$depends = null;
 			}
 			array_push($tasks, $t);
@@ -120,12 +123,13 @@ class TasksApi extends MagratheaApiControl {
 		$project_id = $params["project_id"];
 		$post = $this->GetPost();
 		$ts = $post["tasks"];
+		$activity = $post["activity"];
 
 		if(empty($ts)) {
 			throw new MagratheaApiException("invalid tasks", 401);
 		}
 
-		return $this->manageBulk($project_id, $ts);
+		return $this->manageBulk($project_id, $ts, $activity);
 	}
 
 }
