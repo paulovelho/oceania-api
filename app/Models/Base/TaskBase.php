@@ -8,6 +8,7 @@ class TaskBase extends MagratheaModel implements iMagratheaModel {
 	public $id, $project_id, $epic, $task, $activity_id, $status_id, $priority, $urgency, $hours_estimation, $hours_spent, $hours_total, $value_expected, $value_final, $depends_on, $deadline, $notes, $added_on;
 	public $created_at, $updated_at;
 	protected $autoload = array("Status" => "status_id");
+	public $Status;
 
 	public function __construct(  $id=0  ){ 
 		$this->MagratheaStart();

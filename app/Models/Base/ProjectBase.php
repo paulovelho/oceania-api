@@ -5,9 +5,10 @@
 
 class ProjectBase extends MagratheaModel implements iMagratheaModel {
 
-	public $id, $name, $short_desc, $type, $active, $value;
+	public $id, $name, $short_desc, $type, $client_id, $active, $value;
 	public $created_at, $updated_at;
-	protected $autoload = null;
+	protected $autoload = array("Client" => "client_id");
+	public $Client;
 
 	public function __construct(  $id=0  ){ 
 		$this->MagratheaStart();
@@ -24,12 +25,16 @@ class ProjectBase extends MagratheaModel implements iMagratheaModel {
 		$this->dbValues["name"] = "string";
 		$this->dbValues["short_desc"] = "string";
 		$this->dbValues["type"] = "string";
+		$this->dbValues["client_id"] = "int";
 		$this->dbValues["active"] = "int";
 		$this->dbValues["value"] = "float";
 
 		$this->relations["properties"]["Tasks"] = null;
 		$this->relations["methods"]["Tasks"] = "GetTasks";
 		$this->relations["lazyload"]["Tasks"] = "true";
+		$this->relations["properties"]["Client"] = null;
+		$this->relations["methods"]["Client"] = "GetClient";
+		$this->relations["lazyload"]["Client"] = "false";
 		$this->dbValues["created_at"] =  "datetime";
 		$this->dbValues["updated_at"] =  "datetime";
 
@@ -41,6 +46,16 @@ class ProjectBase extends MagratheaModel implements iMagratheaModel {
 		$pk = $this->dbPk;
 		$this->relations["properties"]["Tasks"] = TaskControlBase::GetWhere(array("project_id" => $this->$pk));
 		return $this->relations["properties"]["Tasks"];
+	}
+	public function GetClient(){
+		if($this->relations["properties"]["Client"] != null) return $this->relations["properties"]["Client"];
+		$this->relations["properties"]["Client"] = new Client($this->client_id);
+		return $this->relations["properties"]["Client"];
+	}
+	public function SetClient($client){
+		$this->relations["properties"]["Client"] = $client;
+		$this->client_id = $client->GetID();
+		return $this;
 	}
 
 }

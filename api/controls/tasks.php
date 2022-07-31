@@ -53,14 +53,12 @@ class TasksApi extends MagratheaApiControl {
 		return $t;
 	}
 
-
-
 	/* bulk add task */
 	private function CreateFromBase($name, $project_id, $hours=8, $activity=null, $depends_on=false) {
 		$t = new Task();
 		$t->task = $name;
 		$t->project_id = $project_id;
-		$t->hours_estimation = $hours;
+		$t->hours_estimation = intval($hours);
 		if($activity) {
 			$t->activity_id = $activity;
 		}

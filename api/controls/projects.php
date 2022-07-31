@@ -13,6 +13,7 @@ class ProjectsApi extends MagratheaApiControl {
 		$p->name = $data["name"];
 		$p->short_desc = $data["short_desc"];
 		$p->active = true;
+		$p->client_id = $data["client_id"] || 1;
 		$p->value = 0;
 		try {
 			if($p->Insert()) {
@@ -21,6 +22,10 @@ class ProjectsApi extends MagratheaApiControl {
 		} catch(Exception $ex) {
 			throw $ex;
 		}
+	}
+
+	public function List() {
+		return $this->service->GetAllWithClients();
 	}
 
 }
