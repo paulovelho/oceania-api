@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `short_desc` varchar(255) NOT NULL,
+  `short_desc` varchar(255) NULL,
   `type` varchar(255) NULL,
   `active` tinyint(1) NOT NULL,
   `value` float NOT NULL,

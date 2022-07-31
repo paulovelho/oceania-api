@@ -7,7 +7,13 @@ class Project extends ProjectBase {
 }
 
 class ProjectControl extends ProjectControlBase {
-	// and here!
+	public function GetAllWithClients() {
+		$query = MagratheaQuery::Select()
+			->Obj(new Project())
+			->HasOne(new Client(), "client_id");
+		$rs = $this->Run($query);
+		return $rs;
+	}
 }
 
 ?>

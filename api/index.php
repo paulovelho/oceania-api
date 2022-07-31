@@ -1,6 +1,6 @@
 <?php
 
-	include("../app/inc/global.php");
+	include(__DIR__."/../app/inc/global.php");
 	MagratheaModel::IncludeAllModels();
 
 	include("api.php");

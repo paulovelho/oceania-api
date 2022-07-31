@@ -2,7 +2,7 @@
 
 class StatusApi extends MagratheaApiControl {
 
-	private $bootstraps = array("backlog", "to do", "queue", "waiting", "wip", "done", "cancelled", "blocked");
+	private $bootstraps = array("backlog", "to do", "queue", "waiting", "wip", "done", "cancelled", "blocked", "archived");
 
 	public function __construct() {
 		$this->model = "Status";

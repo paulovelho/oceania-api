@@ -15,7 +15,7 @@ class UsersApi extends MagratheaApiControl {
 		try {
 			$existing = $this->service->GetByEmail($this->bootstrapEmail);
 			if($existing != null) {
-				return array('message' => "bootstrap user already exists");
+				return array('message' => "bootstrap user already exists", 'data' => $existing);
 			}
 			$u = new User();
 			$u->name = $this->bootstrapName;

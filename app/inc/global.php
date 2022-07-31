@@ -1,6 +1,6 @@
 <?php
 
-	session_start();
+	@session_start();
 	ini_set("display_errors", 1);
 	ini_set("track_errors", 1);
 	ini_set("html_errors", 1);
@@ -10,7 +10,7 @@
 //	set_include_path(get_include_path().PATH_SEPARATOR.$path);
 
 	include("config.php");
- 
+
 	// looooooaaaadddiiiiiinnnnnnggggg.....
 	include($magrathea_path."/LOAD.php");
 

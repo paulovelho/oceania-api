@@ -26,6 +26,7 @@ services:
       - ./configs:/var/www/configs
       - ./api:/var/www/api
       - ./app:/var/www/app
+      - ./Tests:/var/www/Tests
 #      - ./_magrathea:/var/www/magrathea
       - /Users/paulohenriquemartins/Paulo/MagratheaPHP/Magrathea:/var/www/magrathea
       - ./database:/var/www/database
