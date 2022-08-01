@@ -40,6 +40,13 @@ class TaskControl extends TaskControlBase {
 //		return $query->SQL();
 	}
 
+	public function GetByStatus($status_id) {
+		$query = MagratheaQuery::Select()
+			->Obj(new Task())
+			->Where(array("status_id" => $status_id));
+		return $this->Run($query);
+	}
+
 }
 
 ?>

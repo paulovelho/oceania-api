@@ -60,6 +60,7 @@
 				->Add("POST", "tasks/:project_id/bulk-add", $tasksApi, "BulkAdd", self::LOGGED)
 				->Add("POST", "task/:id/add-hour", $tasksApi, "AddHour", self::LOGGED)
 				->Add("POST", "task/:id/remove-hour", $tasksApi, "RemoveHour", self::LOGGED)
+				->Add("GET", "status/:status_id/tasks", $tasksApi, "TasksByStatus", self::LOGGED)
 
 				;
 
