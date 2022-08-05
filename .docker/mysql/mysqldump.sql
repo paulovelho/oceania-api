@@ -77,7 +77,7 @@ CREATE TABLE `clients` (
 CREATE TABLE `projects` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `short_desc` varchar(255) NOT NULL,
+  `short_desc` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `client_id` bigint(20) NOT NULL,
   `active` tinyint(1) NOT NULL,
