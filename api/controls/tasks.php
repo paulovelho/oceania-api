@@ -53,6 +53,13 @@ class TasksApi extends MagratheaApiControl {
 		return $t;
 	}
 
+
+	public function TasksByStatus($params) {
+		$status = +$params["status_id"];
+		return $this->service->GetByStatus($status);
+	}
+
+
 	/* bulk add task */
 	private function CreateFromBase($name, $project_id, $hours=8, $activity=null, $depends_on=false) {
 		$t = new Task();
