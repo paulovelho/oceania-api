@@ -1,10 +1,12 @@
 <?php
 	require("inc/global.php");
 
+	$activePassword = MagratheaConfig::Instance()->GetConfigFromDefault("admin_password");
+
 	$email = @$_POST["email"];
 	$pass = @$_POST["password"];
 
-	if($email == "paulovelho" && $pass = "123") {
+	if($email == "paulovelho" && $pass = $activePassword) {
 		$_SESSION["magrathea_user"] = $email;
 	}
 
