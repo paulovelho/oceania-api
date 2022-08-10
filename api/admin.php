@@ -14,7 +14,7 @@
 		$admin = new MagratheaAdmin(); // adds the admin file
 		$admin->AddPlugin("colorbox");
 		$admin->AddPlugin("dropzone");
-		$admin->AddPlugin("MagratheaImages2");
+//		$admin->AddPlugin("MagratheaImages2");
 		$admin->Load(); // load!
 	} else {
 		LoginController::Login();

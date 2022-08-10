@@ -5,20 +5,20 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ddd507cfa5c34e08b0fd652ce8aaa187d11619c2',
+        'reference' => '1fe26c4dbaf745662010c5fefadc9ffd7215f80d',
         'name' => 'platypus/oceania',
         'dev' => true,
     ),
     'versions' => array(
         'firebase/php-jwt' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../firebase/php-jwt',
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => 'd87688f9e65ca279ca66181fd3476782efb791d2',
+            'reference' => '018dfc4e1da92ad8a1b90adc4893f476a3b41cb8',
             'dev_requirement' => false,
         ),
         'platypus/oceania' => array(
@@ -27,7 +27,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ddd507cfa5c34e08b0fd652ce8aaa187d11619c2',
+            'reference' => '1fe26c4dbaf745662010c5fefadc9ffd7215f80d',
             'dev_requirement' => false,
         ),
     ),

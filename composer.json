@@ -8,6 +8,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "firebase/php-jwt": "@dev"
+        "firebase/php-jwt": "dev-main"
     }
 }

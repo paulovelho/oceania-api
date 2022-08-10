@@ -1,6 +1,7 @@
 <?php
 require("../vendor/autoload.php");
 use \Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
 
 class AuthenticationApi extends MagratheaApiControl {
 
@@ -30,6 +31,8 @@ class AuthenticationApi extends MagratheaApiControl {
 			$headers = trim($_SERVER["Authorization"]);
 		} else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
 			$headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
+		} elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) { // htaccess rules
+			$headers = trim($_SERVER["REDIRECT_HTTP_AUTHORIZATION"]);
 		} elseif (function_exists('apache_request_headers')) {
 			$requestHeaders = apache_request_headers();
 			// Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care about capitalization for Authorization)
@@ -40,6 +43,9 @@ class AuthenticationApi extends MagratheaApiControl {
 			}
 		}
 		return $headers;
+	}
+	public function GetHeaders() {
+		return $this->getAuthorizationHeader();
 	}
 	/**
 	* get access token from header
@@ -60,10 +66,10 @@ class AuthenticationApi extends MagratheaApiControl {
 	}
 
 	public function jwtDecode($token) {
-		return JWT::decode($token, base64_decode(strtr($this->secret, '-_', '+/')), [$this->jwtEncodeType]);
+		return JWT::decode($token, new Key(strtr($this->secret, '-_', '+/'), $this->jwtEncodeType));
 	}
 	public function jwtEncode($payload) {
-		return JWT::encode($payload, base64_decode(strtr($this->secret, '-_', '+/')), $this->jwtEncodeType);
+		return JWT::encode($payload, strtr($this->secret, '-_', '+/'), $this->jwtEncodeType);
 	}
 
 	public function GetTokenInfo($token=false) {
