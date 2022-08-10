@@ -18,6 +18,7 @@ sftp-config*
 database/*
 .htpasswd
 _magrathea/*
+*.prod
 
 .docker/mysql/*.nokeep
 
