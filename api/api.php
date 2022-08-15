@@ -32,7 +32,7 @@
 
 				// auth
 				->Add("POST", "login", $authApi, "Login", self::OPEN)
-				->Add("GET", "token", $authApi, "GetTokenInfo", self::OPEN)
+				->Add("GET", "token", $authApi, "GetTokenInfo", self::LOGGED)
 //				->Add("GET", "headers", $authApi, "GetHeaders", self::OPEN)
 
 				// users

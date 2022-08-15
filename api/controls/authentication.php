@@ -146,7 +146,7 @@ class AuthenticationApi extends MagratheaApiControl {
 			}
 			return false;
 		} catch(Exception $ex) {
-			throw $ex;
+			throw new Exception($ex->getMessage(), 401);
 		}
 	}
 
