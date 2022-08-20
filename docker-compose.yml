@@ -34,7 +34,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: always
     environment:
       LETS_ENCRYPT_EMAIL: "oceania@platypusweb.com.br"
       LETS_ENCRYPT_DOMAINS: "oceania-api.localhost.com,www.oceania-api.localhost.com"
