@@ -30,6 +30,14 @@ class TaskControl extends TaskControlBase {
 		return $rs;
 	}
 
+	public function ChangeBulkStatus($arr_task_ids, $status_id) {
+		$query = MagratheaQuery::Update()
+			->Obj(new Task())
+			->Where("id IN (".implode(',', $arr_task_ids).")")
+			->Set("status_id", $status_id);
+		return $this->Run($query);
+	}
+
 	public function HourChange($task_id, $sign) {
 		$query = MagratheaQuery::Update()
 			->Obj(new Task())
@@ -37,7 +45,6 @@ class TaskControl extends TaskControlBase {
 			->SetRaw("hours_spent = (hours_spent ".$sign." 1)");
 		$rs = $this->Run($query);
 		return $rs;
-//		return $query->SQL();
 	}
 
 	public function GetByStatus($status_id) {

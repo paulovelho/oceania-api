@@ -53,6 +53,13 @@ class TasksApi extends MagratheaApiControl {
 		return $t;
 	}
 
+	public function Archive() {
+		$data = $this->GetPost();
+		$ts = $data["tasks"];
+		$task_ids = explode(',', $ts);
+		$archive_st = 9;
+		return $this->service->ChangeBulkStatus($task_ids, 9);
+	}
 
 	public function TasksByStatus($params) {
 		$status = +$params["status_id"];
